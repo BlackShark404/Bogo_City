@@ -134,10 +134,21 @@
   color: white;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   text-align: center;
-  margin-top: 20vh;
+  margin-top: 33vh;
 }
 
 /* Utility classes */
 .nav-link.active {
   font-weight: 600;
+}
+
+.image-link img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.image-link img:hover {
+  transform: scale(1.1);
 }
