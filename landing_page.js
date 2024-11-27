@@ -12,6 +12,7 @@ class NavMenu {
 
   init() {
     this.bindEvents();
+    this.bindClickOutside();
   }
 
   isMobile() {
@@ -66,6 +67,22 @@ class NavMenu {
     } else if (this.offcanvas.classList.contains('show')) {
       this.offcanvas.classList.add('glass-effect');
     }
+  }
+
+  bindClickOutside() {
+    document.addEventListener('click', (event) => {
+      // Check if offcanvas is open
+      if (this.offcanvas.classList.contains('show')) {
+        // Check if the click is outside the offcanvas
+        if (!this.offcanvas.contains(event.target)) {
+          // Use Bootstrap's offcanvas hide method
+          const offcanvasInstance = bootstrap.Offcanvas.getInstance(this.offcanvas);
+          if (offcanvasInstance) {
+            offcanvasInstance.hide();
+          }
+        }
+      }
+    });
   }
 }
 
