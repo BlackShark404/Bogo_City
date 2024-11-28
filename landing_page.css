@@ -10,6 +10,10 @@
   --transition-fast: 0.2s ease-out;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* Reset and base styles */
 *,
 *::before,
@@ -105,6 +109,45 @@
   }
 }
 
+/* Dropdown menu styles */
+.dropdown-toggle {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-toggle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.dropdown-toggle:hover::after {
+  opacity: 1;
+}
+
+.dropdown-menu {
+  background-color: var(--primary-bg);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+}
+
+.dropdown-item {
+  color: var(--text-dark);
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown-item:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
 /* Divider */
 .divider {
   display: none;
@@ -144,12 +187,7 @@
   color: white;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   text-align: center;
-  margin-top: 35vh;
-}
-
-/* Utility classes */
-.nav-link.active {
-  font-weight: 600;
+  margin-top: 33vh;
 }
 
 .image-link img {
@@ -163,219 +201,126 @@
   transform: scale(1.1);
 }
 
-/* Footer Styling */
-.govph-footer {
-  background-color: #f8f8f8;
-  /* Light gray background */
-  color: #333;
-  /* Dark gray (almost black) text */
-  padding: 20px 0;
-  font-size: 14px;
-}
 
-/* Footer Heading Styling */
-.govph-footer h6 {
-  color: #000;
-  /* Pure black text */
-  font-size: 16px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-/* Footer Links Styling */
-.govph-footer a {
-  color: #000;
-  /* Black links */
-  text-decoration: none;
-}
-
-.govph-footer a:hover {
-  text-decoration: underline;
-}
-
-/* List and General Layout */
-.govph-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.govph-footer ul li {
-  margin-bottom: 5px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.col-lg-4,
-.col-md-4,
-.col-sm-12 {
-  flex: 1;
-  min-width: 300px;
-  padding: 10px;
-}
-
-/* General Styles */
-#standard-footer {
-  background-color: #efefef;
-  padding: 1.25rem 0;
-  font-size: 0.7rem;
-  color: #505050;
-}
-
-#standard-footer h4 {
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-#standard-footer p {
-  margin: 0;
-}
-
-/* Layout Styles */
-.container-footer {
-  max-width: 1280px;
+/* Custom Carousel Styling */
+.carousel {
+  max-height: 600px;
+  /* Defines the maximum height */
+  width: 100%;
+  /* Adjusts the width of the carousel */
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  /* Centers the carousel horizontally */
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  /* Required for pseudo-elements */
 }
 
-.footer-section {
-  flex: 1;
-  min-width: 280px;
-  margin: 0 1rem;
-}
-
-/* Logo Section */
-.footer-logo {
+.carousel-item {
+  position: relative;
   display: flex;
+  justify-content: center;
+  /* Centers the smaller image */
   align-items: center;
-  gap: 1rem;
-  justify-content: flex-start;
-  /* Align items to the left */
 }
 
-.footer-logo img {
-  width: 190px;
-  height: auto;
-}
-
-/* Text beside or below the image */
-.footer-text {
-  flex: 1;
-  font-size: 0.9rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 0.5rem;
-}
-
-/* Links Styling */
-#standard-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#standard-footer ul li {
-  margin-bottom: 0.5rem;
-}
-
-#standard-footer ul li a {
-  color: #505050;
-  text-decoration: none;
-}
-
-#standard-footer ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-
-  /* For medium screens: Align the text to the bottom of the image */
-  .footer-logo {
-    align-items: flex-start;
-    /* Align items to the left */
-  }
-
-  .footer-logo img {
-    margin-right: 1rem;
-  }
-
-  .footer-text {
-    flex: none;
-    width: 100%;
-    /* Force text to take full width below the image */
-    margin-top: 0.5rem;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    /* Align text to the bottom of the image */
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 768px) {
-
-  /* For smaller screens: Stack elements vertically */
-  .footer-logo {
-    flex-direction: column;
-    /* Stack vertically */
-    align-items: flex-start;
-  }
-
-  .footer-logo img {
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-text {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-}
-
-.c-item {
-  height: 600px;
-}
-
-.c-img {
-  height: 100%;
+.carousel-item img {
   object-fit: cover;
+  /* Ensures images are cropped rather than stretched */
+  object-position: center;
+  max-height: 600px;
+  /* Prevents stretching beyond the carousel height */
+  width: 60%;
+  /* Ensure images are smaller than the width of the carousel */
+  height: auto;
+  /* Maintains the aspect ratio */
+  z-index: 2;
+  /* Ensures the image is above the blurred background */
+  border-radius: 6px;
+  /* Adds rounded corners to the image */
+}
+
+/* Pseudo-elements for the blur background */
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit;
+  /* Uses the same image as the content */
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  /* Creates the blur effect */
+  z-index: 1;
+  /* Ensures the blur is behind the main image */
+  transform: scale(1.1);
+  /* Slightly enlarges the blurred background */
+  opacity: 0.8;
+  /* Makes the blur softer */
+}
+
+.carousel-indicators {
+  bottom: 20px;
+}
+
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+/* Overlay effect for better text readability */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.mayor-background {
+  background-size: cover;
+  min-height: 60vh;
+  position: relative;
+  background-repeat: no-repeat;
+  background-image: url(bogo-city-cebu-beach-resort-tourist-attractions-and-destinations-cover.png);
+  background-attachment: fixed;
 }
 
 .fixed-bg {
-  background-image: url('bogo-city-cebu-beach-resort-tourist-attractions-and-destinations-cover.png');
+  background-image: url('Capitancillo-Islet-1024x512_enhanced.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
   color: white;
   position: relative;
-  
+
   /* Add these properties to center vertically and horizontally */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensure it covers the full viewport height */
+  min-height: 100vh;
+  /* Ensure it covers the full viewport height */
 }
 
 .container-mayor {
-  width: 100%; /* Ensure full width within the flex container */
+  width: 100%;
+  /* Ensure full width within the flex container */
 }
 
 .card {
@@ -384,97 +329,108 @@
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-size: 1.2rem;
-  width: 80%; /* Keep the width at 80% */
-  margin: 0 auto; /* Center the card horizontally */
+  width: 80%;
+  /* Keep the width at 80% */
+  margin: 0 auto;
+  /* Center the card horizontally */
 }
 
 
 .card-body {
-  color: white; /* Change text color for contrast */
+  color: white;
+  /* Change text color for contrast */
 }
 
 /* Optional: Styling for the image */
 .card img {
-  object-fit: contain;  /* Prevent cropping, ensure the full image is visible */
-  width: 100%; /* Ensure the image fills the container width */
-  max-height: 100%; /* Limit the height to avoid overflow */
-  border: 3px solid rgba(241, 253, 238, 0.363); /* Green border around the image */
-  border-radius: 10px; /* Optional: round the corners of the image */
+  object-fit: contain;
+  /* Prevent cropping, ensure the full image is visible */
+  width: 100%;
+  /* Ensure the image fills the container width */
+  max-height: 100%;
+  /* Limit the height to avoid overflow */
+  border: 3px solid rgba(241, 253, 238, 0.363);
+  /* Green border around the image */
+  border-radius: 10px;
+  /* Optional: round the corners of the image */
 }
 
 /* Increase font size for the text in the card body */
 .card-body h5 {
-  font-size: 2rem; /* Make the card title larger */
+  font-size: 2rem;
+  /* Make the card title larger */
 }
 
 .card-body p {
-  font-size: 1.7rem; /* Increase the font size for the description */
+  font-size: 1.7rem;
+  /* Increase the font size for the description */
 }
 
 /* Media query for medium screens (768px to 991px) */
-@media (min-width: 768px) and (max-width: 1150px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .card img {
-    height: auto; /* Allow image to adjust based on its natural height */
-    max-height: 300px; /* Set a maximum height for medium screens */
+    height: auto;
+    /* Allow image to adjust based on its natural height */
+    max-height: 300px;
+    /* Set a maximum height for medium screens */
   }
 
   .card-body h5 {
-    font-size: 1.75rem; /* Slightly reduce the title font size for medium screens */
+    font-size: 1.75rem;
+    /* Slightly reduce the title font size for medium screens */
   }
 
   .card-body p {
-    font-size: 1.7rem; /* Slightly reduce the paragraph font size for medium screens */
-  }
-
-  .fixed-bg {
-    padding-bottom: 100px;
+    font-size: 1.3rem;
+    /* Slightly reduce the paragraph font size for medium screens */
   }
 }
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
+
   /* For screens smaller than 768px, reduce the image size */
   .card img {
-    height: auto; /* Allow image to adjust based on its natural height */
-    max-height: 250px; /* Set a maximum height for smaller screens */
+    height: auto;
+    /* Allow image to adjust based on its natural height */
+    max-height: 250px;
+    /* Set a maximum height for smaller screens */
   }
 
   /* Adjust text size for smaller screens */
   .card-body h5 {
-    font-size: 1.5rem; /* Reduce the title font size */
+    font-size: 1.5rem;
+    /* Reduce the title font size */
   }
 
   .card-body p {
-    font-size: 1rem; /* Reduce the paragraph font size */
+    font-size: 1rem;
+    /* Reduce the paragraph font size */
   }
 
   /* Adjust padding for the card body */
   .card-body {
     padding: 10px;
   }
-
-  .fixed-bg {
-    padding-bottom: 100px;
-  }
 }
 
 @media (max-width: 576px) {
+
   /* For very small screens (e.g., mobile phones), adjust the image further */
   .card img {
-    height: auto; /* Keep the height flexible */
-    max-height: 200px; /* Further reduce the image height */
+    height: auto;
+    /* Keep the height flexible */
+    max-height: 200px;
+    /* Further reduce the image height */
   }
 
   .card-body h5 {
-    font-size: 1.25rem; /* Further reduce the title font size */
+    font-size: 1.25rem;
+    /* Further reduce the title font size */
   }
 
   .card-body p {
-    font-size: 0.9rem; /* Further reduce the paragraph font size */
-  }
-
-  .fixed-bg {
-    padding-bottom: 100px;
+    font-size: 0.9rem;
+    /* Further reduce the paragraph font size */
   }
 }
-
