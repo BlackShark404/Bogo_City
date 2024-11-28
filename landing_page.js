@@ -6,6 +6,11 @@ class NavMenu {
 
     this.links = this.offcanvas.querySelectorAll('.nav-link');
     this.divider = this.offcanvas.querySelector('.divider');
+    this.servicesDropdown = this.offcanvas.querySelector('.dropdown');
+    this.servicesDropdownToggle = this.offcanvas.querySelector('.dropdown-toggle');
+
+    // Add a property to store the dropdown close timeout
+    this.dropdownCloseTimeout = null;
 
     this.init();
   }
@@ -13,6 +18,7 @@ class NavMenu {
   init() {
     this.bindEvents();
     this.bindClickOutside();
+    this.setupDropdownHover();
   }
 
   isMobile() {
@@ -81,6 +87,49 @@ class NavMenu {
             offcanvasInstance.hide();
           }
         }
+      }
+    });
+  }
+
+  setupDropdownHover() {
+    // Only apply hover effect on desktop
+    if (!this.servicesDropdownToggle) return;
+
+    // Desktop hover functionality
+    this.servicesDropdownToggle.addEventListener('mouseenter', () => {
+      // Clear any existing close timeout
+      if (this.dropdownCloseTimeout) {
+        clearTimeout(this.dropdownCloseTimeout);
+        this.dropdownCloseTimeout = null;
+      }
+
+      if (!this.isMobile()) {
+        const dropdownInstance = bootstrap.Dropdown.getInstance(this.servicesDropdownToggle);
+        if (!dropdownInstance) {
+          new bootstrap.Dropdown(this.servicesDropdownToggle);
+        }
+        this.servicesDropdownToggle.click();
+      }
+    });
+
+    // Add mouseleave event to close dropdown on desktop with a delay
+    this.servicesDropdown.addEventListener('mouseleave', () => {
+      if (!this.isMobile()) {
+        // Set a timeout before closing the dropdown
+        this.dropdownCloseTimeout = setTimeout(() => {
+          const dropdownInstance = bootstrap.Dropdown.getInstance(this.servicesDropdownToggle);
+          if (dropdownInstance) {
+            dropdownInstance.hide();
+          }
+        }, 200); // 200ms delay before closing
+      }
+    });
+
+    // Cancel the close timeout if mouse re-enters the dropdown
+    this.servicesDropdown.addEventListener('mouseenter', () => {
+      if (!this.isMobile() && this.dropdownCloseTimeout) {
+        clearTimeout(this.dropdownCloseTimeout);
+        this.dropdownCloseTimeout = null;
       }
     });
   }
