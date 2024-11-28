@@ -358,3 +358,123 @@
   height: 100%;
   object-fit: cover;
 }
+
+.fixed-bg {
+  background-image: url('bogo-city-cebu-beach-resort-tourist-attractions-and-destinations-cover.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  position: relative;
+  
+  /* Add these properties to center vertically and horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure it covers the full viewport height */
+}
+
+.container-mayor {
+  width: 100%; /* Ensure full width within the flex container */
+}
+
+.card {
+  background-color: rgba(241, 253, 238, 0.116);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  width: 80%; /* Keep the width at 80% */
+  margin: 0 auto; /* Center the card horizontally */
+}
+
+
+.card-body {
+  color: white; /* Change text color for contrast */
+}
+
+/* Optional: Styling for the image */
+.card img {
+  object-fit: contain;  /* Prevent cropping, ensure the full image is visible */
+  width: 100%; /* Ensure the image fills the container width */
+  max-height: 100%; /* Limit the height to avoid overflow */
+  border: 3px solid rgba(241, 253, 238, 0.363); /* Green border around the image */
+  border-radius: 10px; /* Optional: round the corners of the image */
+}
+
+/* Increase font size for the text in the card body */
+.card-body h5 {
+  font-size: 2rem; /* Make the card title larger */
+}
+
+.card-body p {
+  font-size: 1.7rem; /* Increase the font size for the description */
+}
+
+/* Media query for medium screens (768px to 991px) */
+@media (min-width: 768px) and (max-width: 1150px) {
+  .card img {
+    height: auto; /* Allow image to adjust based on its natural height */
+    max-height: 300px; /* Set a maximum height for medium screens */
+  }
+
+  .card-body h5 {
+    font-size: 1.75rem; /* Slightly reduce the title font size for medium screens */
+  }
+
+  .card-body p {
+    font-size: 1.7rem; /* Slightly reduce the paragraph font size for medium screens */
+  }
+
+  .fixed-bg {
+    padding-bottom: 100px;
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  /* For screens smaller than 768px, reduce the image size */
+  .card img {
+    height: auto; /* Allow image to adjust based on its natural height */
+    max-height: 250px; /* Set a maximum height for smaller screens */
+  }
+
+  /* Adjust text size for smaller screens */
+  .card-body h5 {
+    font-size: 1.5rem; /* Reduce the title font size */
+  }
+
+  .card-body p {
+    font-size: 1rem; /* Reduce the paragraph font size */
+  }
+
+  /* Adjust padding for the card body */
+  .card-body {
+    padding: 10px;
+  }
+
+  .fixed-bg {
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* For very small screens (e.g., mobile phones), adjust the image further */
+  .card img {
+    height: auto; /* Keep the height flexible */
+    max-height: 200px; /* Further reduce the image height */
+  }
+
+  .card-body h5 {
+    font-size: 1.25rem; /* Further reduce the title font size */
+  }
+
+  .card-body p {
+    font-size: 0.9rem; /* Further reduce the paragraph font size */
+  }
+
+  .fixed-bg {
+    padding-bottom: 100px;
+  }
+}
+
